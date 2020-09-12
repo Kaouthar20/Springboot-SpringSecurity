@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
 
-      layout:decorate="~{template1}">
+      layout:decorate="~{template1}" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
 
@@ -40,9 +40,9 @@
                 <td th:text="${p.birthYear}"></td>
                 <td th:text="${p.sick}"></td>
                 <td th:text="${p.score}"></td>
-                <td ><a onclick="javascript:return confirm('are you sure?')"  class="btn btn-danger"
+                <td  sec:authorize="hasRole('ROLE_ADMIN')"><a onclick="javascript:return confirm('are you sure?')"  class="btn btn-danger"
                         th:href="@{delete(id=${p.id},page=${currentPage},size=${size},keyWord=${keyWord})}" method="get">Delete</a></td>
-                <td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
                     <a   class="btn btn-success"
                          th:href="@{updatePatient(id=${p.id})}" >Update</a>
                 </td>

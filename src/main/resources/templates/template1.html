@@ -35,8 +35,8 @@
                Patient
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" th:href="@{formPatient}">add</a>
-                <a class="dropdown-item" th:href="@{patients}">search</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-item" th:href="@{formPatient}">add</a>
+                <a  class="dropdown-item" th:href="@{patients}">search</a>
 
             </div>
         </li>
@@ -44,10 +44,10 @@
         <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardr" data-toggle="dropdown">
-<span sec:athentication="name"></span>
+<span sec:authentication="name"></span>
             </a>
             <div class="dropdown-menu">
-                <a  class="dropdown-item" href="#">Log in</a>
+                <a sec:authorize="!isAuthenticated()" class="dropdown-item" href="#">Log in</a>
                 <a class="dropdown-item" th:href="@{logout}">Log out</a>
                 <a class="dropdown-item" href="#">Profile</a>
             </div>

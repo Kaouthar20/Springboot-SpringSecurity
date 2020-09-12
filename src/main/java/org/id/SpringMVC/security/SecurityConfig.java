@@ -26,9 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin();
 
-       http.authorizeRequests().antMatchers("/save**/**/","/delete**/**").hasRole("ADMIN");
+       http.authorizeRequests().antMatchers("/save**/**/","/delete**/**","/form**/**").hasRole("ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
-
+http.exceptionHandling().accessDeniedPage("/notAuthorized");
     }
     @Bean
 public PasswordEncoder passwordEncoder(){
